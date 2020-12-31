@@ -20,7 +20,6 @@
       "message": "Moeda cambial já existente."
     }
   },
-  
   "CURRENCY_DOES_NOT_EXIST": {
     "status": 400,
     "body": {
@@ -28,7 +27,6 @@
       "message": "Moeda cambial inexistente."
     }
   },
-
   "CURRENCY_NOT_SUPPORTED": {
     "status": 400,
     "body": {

@@ -15,7 +15,7 @@ const makeDeleteCurrency = ({ errorMessages, removeCurrency }) => {
 			const newCurrencies = await removeCurrency({ currency, myCache })
 
 			return {
-                status: 'success',
+				status: 'success',
 				statusCode: 200,
 				body: newCurrencies
 			}

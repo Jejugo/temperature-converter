@@ -9,9 +9,12 @@
   },
   "scripts": {
     "start": "cp config/config.dev.js config/index.js; nodemon server/index.js",
-    "dev": "cp config/config.dev.js config/index.js; node --inspect server/index.js",
-    "test": "mocha 'test/**/*.js' --recursive --timeout 100000 --exit",
-    "docker:run": "docker run -it -p 3002:3002  ecommerce-service:latest"
+    "dev": "cp config/config.dev.js config/index.js; node server/index.js",
+    "dev:debug": "cp config/config.dev.js config/index.js; node --inspect server/index.js",
+    "test": "mocha 'test/**/*.js' --recursive --timeout 60000 --exit",
+    "lint": "eslint --fix --ext .json, .js, .spec.js --no-error-on-unmatched-pattern",
+    "docker:build": "docker build . -t converter",
+    "docker:run": "docker run -it -p 3000:3000 --name converter converter:latest"
   },
   "author": "Jeff Goes",
   "license": "ISC",
@@ -24,6 +27,9 @@
     "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-standard": "^5.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "nock": "^13.0.5",
@@ -36,6 +42,8 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "eslint": "^7.16.0",
+    "lint": "^0.7.0",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0"
   }

@@ -24,11 +24,12 @@ describe("GET /health ", () => {
 		sandbox = sinon.createSandbox()
 	})
 
+	after(() => {
+		sandbox.restore()
+	})
+
 	//test a function for a specific case
 	it("returns status 200 ", async () => {
-		// const retrieveCurrencyStub = sandbox.stub(useCases, 'retrieveCurrency').resolves({
-		// 	teste: 'teste'
-		// })
 		const { statusCode, body } = await chai.request(createServer()).get('/health')
 		expect(statusCode).to.equal(200)
 	})

@@ -1,6 +1,7 @@
 const { getCurrency } = require('../../src/_controllers')
 const { createServer } = require('../../src/routes')
 const useCases = require('../../src/_use-cases')
+const axios = require('axios')
 
 const sinon = require('sinon')
 //chai configuration
@@ -31,12 +32,19 @@ describe("GET /conversion ", () => {
 		sandbox = sinon.createSandbox()
 	})
 
+	after(() => {
+		sandbox.restore()
+	})
+
 	//test a function for a specific case
 	it("returns status 200 ", async () => {
-		// const retrieveCurrencyStub = sandbox.stub(useCases, 'retrieveCurrency').resolves({
-		// 	teste: 'teste'
-		// })
-		const { statusCode } = await chai.request(createServer()).get('/conversion?from=USD&to=BRL&amount=10')
+		const axiosStub = sandbox.stub(axios, "get").resolves({
+			data: {
+				rates: 'teste'
+			}
+		});
+
+		const { statusCode, body } = await chai.request(createServer()).get('/conversion?from=USD&to=BRL&amount=10')
 		expect(statusCode).to.equal(200)
 	})
 })

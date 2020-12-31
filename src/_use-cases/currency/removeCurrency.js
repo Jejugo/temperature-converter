@@ -1,11 +1,10 @@
 const CACHE_KEY = 'supported-currencies'
 
-const makeRemoveCurrency = ({  }) => {
-    return async function removeCurrency({ currency, myCache }){
+const makeRemoveCurrency = ({ }) => {
+    return async function removeCurrency({ currency, myCache }) {
         let supportedCurrencies = myCache.get(CACHE_KEY)
-        console.log(supportedCurrencies)
         newSupportedCurrencies = supportedCurrencies.filter(curr => curr !== currency)
-        if(newSupportedCurrencies.length === supportedCurrencies.length){
+        if (newSupportedCurrencies.length === supportedCurrencies.length) {
             throw new Error('CURRENCY_DOES_NOT_EXIST')
         }
         myCache.set(CACHE_KEY, newSupportedCurrencies)

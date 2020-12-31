@@ -1,5 +1,5 @@
 const makeGetHealth = () => {
-  return async function getHealth(httpRequest = {}){
+  return async function getHealth(httpRequest = {}) {
     return {
       statusCode: 200,
       body: {
