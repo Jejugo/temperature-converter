@@ -6,7 +6,7 @@ const NodeCache = require("node-cache");
 
 const {
   getHealth,
-  getCurrency,
+  getConversion,
   postCurrency,
   deleteCurrency
 } = require('./_controllers')
@@ -40,15 +40,13 @@ const setUpRoutes = () => {
   myCache.set('supported-currencies', supportedCurrencies)
 
   app.get('/health', expressCallBack(getHealth, myCache))
-  app.get('/conversion', expressCallBack(getCurrency, myCache))
+  app.get('/conversion', expressCallBack(getConversion, myCache))
   app.post('/currency', expressCallBack(postCurrency, myCache))
   app.delete('/currency', expressCallBack(deleteCurrency, myCache))
-
-  app.listen(3000, () => {
-    console.log('Server is listening on port 3000.')
-  })
 
   return app
 }
 
-module.exports = setUpRoutes()
+module.exports = {
+  createServer: () => setUpRoutes()
+}

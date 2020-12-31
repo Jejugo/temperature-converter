@@ -1,7 +1,6 @@
-const makeGetCurrency = ({ errorMessages, retrieveCurrency }) => {
-	return async function getCurrency(httpRequest, myCache) {
+const makeGetConversion = ({ errorMessages, retrieveConversion }) => {
+	return async function getConversion(httpRequest, myCache) {
 		try {
-			console.log(httpRequest.query)
 			const {
 				from,
 				to,
@@ -15,8 +14,7 @@ const makeGetCurrency = ({ errorMessages, retrieveCurrency }) => {
 				source.referer = headers["Referer"]
 			}
 
-			const currencyConversion = await retrieveCurrency({ from, to, amount, myCache })
-
+			const currencyConversion = await retrieveConversion({ from, to, amount, myCache })
 			return {
 				statusCode: 200,
 				body: currencyConversion
@@ -38,4 +36,4 @@ const makeGetCurrency = ({ errorMessages, retrieveCurrency }) => {
 	}
 }
 
-module.exports = makeGetCurrency;
+module.exports = makeGetConversion;

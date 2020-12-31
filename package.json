@@ -8,9 +8,9 @@
     "url": "git:git@github.com:Jejugo/ecommerce_server.git"
   },
   "scripts": {
-    "start": "cp config/config.dev.js config/index.js; nodemon src/routes.js",
-    "dev": "cp config/config.dev.js config/index.js; node --inspect src/routes.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cp config/config.dev.js config/index.js; nodemon server/index.js",
+    "dev": "cp config/config.dev.js config/index.js; node --inspect server/index.js",
+    "test": "mocha 'test/**/*.js' --recursive --timeout 100000 --exit",
     "docker:run": "docker run -it -p 3002:3002  ecommerce-service:latest"
   },
   "author": "Jeff Goes",
@@ -19,12 +19,20 @@
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "nock": "^13.0.5",
     "node-cache": "^5.1.2",
+    "rootpath": "^0.1.2",
     "sequelize": "^6.3.3",
+    "sinon": "^9.2.2",
+    "sinon-chai": "^3.5.0",
+    "supertest": "^6.0.1",
     "uuid": "^8.3.0"
   },
   "devDependencies": {

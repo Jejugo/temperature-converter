@@ -1,6 +1,6 @@
 const CACHE_KEY = 'supported-currencies'
 
-const makeRetrieveCurrency = ({ config, axios }) => {
+const makeRetrieveConversion = ({ config, axios }) => {
 
 	const checkCurrency = (data, to, from, myCache) => {
 
@@ -15,8 +15,7 @@ const makeRetrieveCurrency = ({ config, axios }) => {
 		}
 	}
 
-	return async function retrieveCurrency({ from, to, amount, myCache }) {
-		console.log(myCache.get('supported-currencies'))
+	return async function retrieveConversion({ from, to, amount, myCache }) {
 		const { data } = await axios.get(`https://api.exchangeratesapi.io/latest?base=${from}`)
 		const verifiedData = checkCurrency(data.rates, to, from, myCache)
 
@@ -27,4 +26,4 @@ const makeRetrieveCurrency = ({ config, axios }) => {
 	}
 }
 
-module.exports = makeRetrieveCurrency
+module.exports = makeRetrieveConversion
